@@ -13,6 +13,8 @@ Here I'll be exploring the HYG Database.
 ```{r, message=FALSE, warning=FALSE}
 # loading libraries
 library(tidyverse)
+library(GGally)
+library(ggthemes)
 
 # sourcing useful functions
 source("../utils/render_table.R", local = TRUE)
@@ -31,6 +33,77 @@ hyg_data %>%
   head(20) %>% 
   render_table()
 ```
+
+```{r, eval=FALSE, include=FALSE}
+hyg_data
+```
+
+```{r, fig.align='center', fig.height=14, fig.width=14, message=FALSE, warning=FALSE}
+hyg_data %>% 
+  select(ra:absmag) %>% 
+  sample_n(1000) %>% 
+  ggpairs(aes(colour = 'steelblue', alpha = 0.01),
+          lower = list(continuous = wrap("smooth", colour = "steelblue")),
+          diag = list(continuous = wrap("barDiag", fill = "steelblue"))) +
+  theme_few()
+```
+
+```{r, fig.align='center', fig.height=10, fig.width=10, message=FALSE, warning=FALSE}
+hyg_data %>% 
+  select(x:vz) %>% 
+  sample_n(10000) %>% 
+  ggpairs(aes(colour = 'steelblue', alpha = 1),
+          lower = list(continuous = wrap("smooth", colour = "steelblue")),
+          diag = list(continuous = wrap("barDiag", fill = "steelblue"))) +
+  theme_few()
+```
+
+```{r}
+hyg_data %>% 
+  ggplot(aes(x = dist)) +
+  geom_density(fill = 'steelblue') +
+  scale_x_log10() +
+  theme_few()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 There are `r ncol(hyg_data)` columns in total.
 
