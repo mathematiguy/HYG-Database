@@ -1,0 +1,66 @@
+---
+title: "Visualising the HYG Database"
+output:
+  prettydoc::html_pretty:
+    theme: hpstr
+    highlight: github
+---
+
+# Introduction
+
+Here I'll be exploring the HYG Database.
+
+```{r, message=FALSE, warning=FALSE}
+# loading libraries
+library(tidyverse)
+
+# sourcing useful functions
+source("../utils/render_table.R", local = TRUE)
+```
+
+## Load the data
+
+```{r, message=FALSE}
+hyg_data <- read_csv("../data/hygdata_v3.csv")
+```
+
+## View the data
+
+```{r}
+hyg_data %>% 
+  head(20) %>% 
+  render_table()
+```
+
+There are `r ncol(hyg_data)` columns in total.
+
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
